@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
 
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #191a1a">
@@ -36,27 +37,66 @@
 
   <style type="text/css">
 #grad1 {
-  height: 200px;
+  height: 400px;
 
   background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(#d8e3e3, #646666); /* Standard syntax (must be last) */
+  background-image: url("axiom_camera.jpg"); /* Standard syntax (must be last) */
+  background-size: 1200px 400px;
 }
   </style>
 
   <body>
-<div id="grad1" class="container" style="margin-top: 10px;">
-  <h3>About</h3>
+<div id="grad1" class="container" style="margin-top: 10px">
+<!--   <h3>About</h3>
   <p>Control daemon is a central place to control cameras parameters and functionality inside the AXIOM Beta Linux Operating System. Current implementation is done as systemd daemon, written in C++. Communication is done via Unix Domain sockets and flatbuffers is used to minify packages. Current endpoints to communicate with daemon are: command line interface (CLI), which allows to send commands from shell and Web Remote, a HTML UI which can be used from smartphones or tablets.</p>
   <ul>
   <li>The task undertaken primarily aimed at Extending the capabilities of Camera control Daemon so as to allow smooth control of camera parameters.</li>
-</ul>
-</div>
+</ul> -->
 
+</div>
+<div>
+<!-- <div class="shadow-none p-3 mb-5 bg-light rounded">No shadow</div>
+<div class="shadow-sm p-3 mb-5 bg-white rounded">Small shadow</div>
+<div class="shadow p-3 mb-5 bg-white rounded">Regular shadow</div> -->
+  <div class="shadow-lg p-3 mb-5 bg-white rounded" style="margin : 40px">
+  
+    <h3>About</h3>
+    <p>Control daemon is a central place to control cameras parameters and functionality inside the AXIOM Beta Linux Operating System. Current implementation is done as systemd daemon, written in C++. Communication is done via Unix Domain sockets and flatbuffers is used to minify packages. Current endpoints to communicate with daemon are: command line interface (CLI), which allows to send commands from shell and Web Remote, a HTML UI which can be used from smartphones or tablets.</p>
+    <ul>
+      <li>The task undertaken primarily aimed at Extending the capabilities of Camera control Daemon so as to allow smooth control of camera parameters.</li>
+    </ul>
+
+  </div>
+
+  <div class="shadow-lg p-3 mb-5 bg-white rounded" style="margin : 40px">
+
+    <h3>Overview of work Done</h3>
+    <h6>The work done can be segregated into the following : </h6>
+    <ul>
+    <li>Creation of Adapters</li>
+    <li>Creation of Modules</li>
+    <li>Restructuring the message packet</li>
+    <li>Testing</li>
+    </ul>
+
+  </div>
+
+  <div class="shadow-lg p-3 mb-5 bg-white rounded" style="margin : 40px">
+
+    <h3>Creation of Adapters</h3>
+
+    <div class="shadow-lg p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #e6e8eb !important">
+      <h4> SysfsAdapter</h4>
+    </div>
+  
+  </div>
+
+</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
