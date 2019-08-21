@@ -1,1 +1,1 @@
-# Apertus-GSOC-2019-
+# Apertus-GSOC-2019
