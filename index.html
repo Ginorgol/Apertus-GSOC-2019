@@ -47,28 +47,28 @@
 
   <body>
 <div id="grad1" class="container" style="margin-top: 10px">
-<!--   <h3>About</h3>
-  <p>Control daemon is a central place to control cameras parameters and functionality inside the AXIOM Beta Linux Operating System. Current implementation is done as systemd daemon, written in C++. Communication is done via Unix Domain sockets and flatbuffers is used to minify packages. Current endpoints to communicate with daemon are: command line interface (CLI), which allows to send commands from shell and Web Remote, a HTML UI which can be used from smartphones or tablets.</p>
-  <ul>
-  <li>The task undertaken primarily aimed at Extending the capabilities of Camera control Daemon so as to allow smooth control of camera parameters.</li>
-</ul> -->
 
-</div>
+<!--   <button type="button" class="btn btn-outline-primary">Primary</button>
+ --></div>
+   <a class="btn btn-outline-dark" href="https://github.com/kiquance21/axiom-control-daemon/tree/UnitTest" role="button" style="position: relative;left: 45%;margin-top: 20px;">View Code</a>
+
 <div>
 <!-- <div class="shadow-none p-3 mb-5 bg-light rounded">No shadow</div>
 <div class="shadow-sm p-3 mb-5 bg-white rounded">Small shadow</div>
 <div class="shadow p-3 mb-5 bg-white rounded">Regular shadow</div> -->
-  <div class="shadow-lg p-3 mb-5 bg-white rounded" style="margin : 40px">
+  <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px">
   
     <h3>About</h3>
     <p>Control daemon is a central place to control cameras parameters and functionality inside the AXIOM Beta Linux Operating System. Current implementation is done as systemd daemon, written in C++. Communication is done via Unix Domain sockets and flatbuffers is used to minify packages. Current endpoints to communicate with daemon are: command line interface (CLI), which allows to send commands from shell and Web Remote, a HTML UI which can be used from smartphones or tablets.</p>
     <ul>
       <li>The task undertaken primarily aimed at Extending the capabilities of Camera control Daemon so as to allow smooth control of camera parameters.</li>
+      <li><a href="https://lab.apertus.org/T1121">Task Link</a>
+</li>
     </ul>
 
   </div>
 
-  <div class="shadow-lg p-3 mb-5 bg-white rounded" style="margin : 40px">
+  <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px">
 
     <h3>Overview of work Done</h3>
     <h6>The work done can be segregated into the following : </h6>
@@ -81,15 +81,170 @@
 
   </div>
 
-  <div class="shadow-lg p-3 mb-5 bg-white rounded" style="margin : 40px">
+  <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px">
 
     <h3>Creation of Adapters</h3>
 
-    <div class="shadow-lg p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #e6e8eb !important">
+    <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
       <h4> SysfsAdapter</h4>
+      <ul>
+        <li>Done : <p>This is a simple adapter created to read from /sys/fs location . Used currently by Environment Module which is used to give information about the voltages and temperatures of systems</p></li>
+        <li>Scope : <p>-</p> </li>
+        <li><a href="https://github.com/kiquance21/axiom-control-daemon/tree/UnitTest/Adapters">Code</a></li>
+      </ul>
+    </div>
+
+    <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+      <h4> I2CAdapter </h4>
+      <ul>
+        <li>Done : <p>This is used to get and set i2c registers values. There are 2 versions of it .One that has a dependency of SMBUS , and one without it . Both have been tested to work fine .This was created so as to mimic to `i2c.func` file in the scripts. Currently the options made available using this are byte `b` and word `w` operations .</p></li>
+        <li>Scope : <p>This module can be exapanded to enable options like `c`,`p` mode etc if required (Reference : https://linux.die.net/man/8/i2cget)</p>
+        <li><a href="https://github.com/kiquance21/axiom-control-daemon/tree/UnitTest/Adapters">Code</a></li>
+
+      </li>
+      </ul>
+    </div>
+
+
+    <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+      <h4> Memory Adapter </h4>
+      <ul>
+        <li>Done : <p>This is a Adapter which is used to map memory using `mmap`. This was already in place when coding period was started. WriteWord was updated to correctly write values to the required register.</p></li>
+        <li>Scope : <p>-</p></li>
+      <li><a href="https://github.com/kiquance21/axiom-control-daemon/tree/UnitTest/Adapters">Code</a></li>
+
+      </ul>
     </div>
   
   </div>
+
+
+  <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px">
+    <h3>Modules</h3>
+
+
+      <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+        <h4> CMV12000 Module </h4>
+        <ul>
+          <li>Done : <p>This module is used to interact with the CMV12000 sensor using the MemoryAdapter. This was already in place when coding period was started. `SetAnalogGain` function was updated according to the `set_gain.sh` script.</p></li>
+          <li>Scope : <p>This Module can be extended to add aggregated functions like `SetAnalogGain` to acheive a certain functionality. 
+          (Reference  : "https://docs.google.com/document/d/1avhqneK2whvau_XBEGza_ujum8SB4EgMCl6i5aC9e18/edit#")</p>
+        </li>
+          <li><a href="https://github.com/kiquance21/axiom-control-daemon/tree/UnitTest/Modules">Code</a></li>
+        </ul>
+      </div>
+
+      <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+        <h4> Environment Module </h4>
+        <ul>
+          <li>Done : <p> This is a module that mimics the `zynq_info.sh` file . This gives us the temperature and voltage results of various zynq_sensors of the module using the SysfsAdapter. </p></li>
+          <li>Scope : <p>This Module should be extended to make it a central place for getting information about all the sensors in the camera.</p></li>
+          <li><a href="https://github.com/kiquance21/axiom-control-daemon/tree/UnitTest/Modules">Code</a></li>
+
+
+        </ul>
+      </div>
+
+      <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+        <h4> I2CHelper Module </h4>
+        <ul>
+          <li>Done : <p>  This is a module that enables the setting and getting the i2c registers via the endpointes (DaemonCLI and WebUI {Has to be updated}) using the `I2CAdapter` . Currently the byte and word operations are allowed . </p></li>
+          <li>Scope : <p>This module can be exapanded to enable options like `c`,`p` mode etc if required (Reference : https://linux.die.net/man/8/i2cget).</p>
+        </li>
+        <li><a href="https://github.com/kiquance21/axiom-control-daemon/tree/UnitTest/Modules">Code</a></li>
+
+        </ul>
+      </div>
+
+
+      <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+        <h4> I2CTest Module </h4>
+        <ul>
+          <li>Done : <p> This module mimics the `pac1720info.sh` script. This gives information of various pac1720 sensors on the power board. </p></li>
+          <li>Scope : <p> This module was primarily created for testing with I2CAdapter . This module should be either renamed to something like `Pac1720InfoModule` or be merged with `Environment Module`.</p>
+        </li>
+          <li><a href="https://github.com/kiquance21/axiom-control-daemon/tree/UnitTest/Modules">Code</a></li>
+        </ul>
+      </div>
+
+      <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+        <h4> LutConf Module</h4>
+        <ul>
+          <li>Done : <p> This module uses the MemoryAdapter to set the LUT config values . Reference (Add LUT register overview)</p></li>
+          <li>Scope : <p> This module is highly dependent on the format of the file in which LUTConfig Values are used. Hence it has to be updated if the format of LUT values is changed. Currently it relies on the the structure that every newline has one LUT value .</p>
+        </li>
+          <li><a href="https://github.com/kiquance21/axiom-control-daemon/tree/UnitTest/Modules">Code</a></li>
+        </ul>
+      </div>
+
+  </div>
+
+  <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px">
+
+    <h3>Message Packet Restructuring</h3>
+    
+    <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+      <ul>
+        <li>Done : <p> As a result of adding different types of control for camera parameters , It was required that we have different packets for different types of controls (as there were different number and types of parameters to process each type of request ). As of the current status there are three different types of packet structures.</p></li>
+        <ol>
+          <li>Basic Packet : Currently used only for CMV12000 sensor</li>
+          <li>I2C Packet : Used for setting and getting I2C registers </li>
+          <li>Blob Packet : Used for setting LUT config values</li>
+        </ol>
+        <li><a href="https://github.com/kiquance21/axiom-control-daemon/blob/UnitTest/Schema/axiom_daemon.fbs">Schema</a></li>
+
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px">
+    <h3>Unit Testing</h3>
+
+    <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+      <ul>
+        <li>Done : <p> The work done concentrates on testing individual functionality of the Modules.The current implementation involves testing CMV12000 Module and the I2CAdapter.</p></li>
+        <li>Scope : <p>This has to be extended to every module. Integration testing has to be done.Since most functionality of the Adapters/Modules involve reading or writing data(Ex Reading sensor temperature which is dynamic) ,it might be difficult to Unit test these functionalities. This can be solved using Mock objects , or to test these parts with integration testing.</p> </li>
+        <li><a href="https://github.com/kiquance21/axiom-control-daemon/tree/master/UnitTests">Code</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px">
+      <h3>Minor Changes</h3>
+      <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+      <ul>
+        <li><p>During the work Adapters and Modules were segregated. Hence the work of interacting with the Camera sensor registers and filesystem is done by Adapters, whereas the Modules use the Adapters to achieve certain tasks. For ex the SetAnalogGain function in CMV12000Module uses MemoryAdapter to read write certain registers.</p></li>
+        <li><p>The Flatbuffer `_builder` was not cleared when the request was sent . Hence added `_builder.clear()` to clear it.</p></li>
+        <li><p>The WriteWord function was modified to clear the original value of the register using `ptr[reg] &= ~0xFFFF` and then setting the desired value using `ptr[reg] |= val`</p></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px">
+      <h3>Further Scope/TODO</h3>
+      <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+      <ul>
+        <li>High Priority : <p>The current packet structure ,specially the blob part has to be tested to check if sending large size blob packets(ex LUT config file) is safe for Daemon Communication.</p></li>
+        <li>Other : 
+          <ol>
+            <li>The project has 2 end points to communicate with namely DaemonCLI and WebUI. The current state of webUI has to be updated according to the latest work done. This requires updating the WebUI itself and the MessageHandler. Since there are different types of messages (Packets) that have to be sent to Daemon ,a generic JSON structure for sending request has to be decided upon . Work is in Progress for this part.</li>
+          </ol>
+      </ul>
+    </div>
+  </div>
+
+
+    <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px">
+      <h3>Code Flow</h3>
+      <div class="shadow p-3 mb-5 bg-white rounded" style="margin : 40px;background-color: #f0f5f5 !important">
+        <img src="CodeFlow.jpg" style="width:100%;height:auto;">
+      </div>
+  </div>
+
+
 
 </div>
 
